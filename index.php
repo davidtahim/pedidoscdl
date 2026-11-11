@@ -34,6 +34,24 @@
                 <input type="number" min="0" step="1.00" id="valor_unitario" name="valor_unitario" required /><br />
                 <input type="submit" value="Salvar Pedido" />
             </form>
+            <hr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Produto</th>
+                        <th>Valor</th>
+                        <th>Ações</th>
+                    </tr>
+                
+                </thead> 
+                <tbody>
+                    <?php
+                    
+                    ?>
+                </tbody>   
+            </table>
         </main>
         <footer>
             <!-- place footer here -->
