@@ -1,5 +1,7 @@
 <?php
-//1 conectar ao banco de dados
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -8,12 +10,11 @@ $port = 3307;
 
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo "Conexão falhou: " . $e->getMessage();
+    die("Conexão falhou: " . $e->getMessage());
 }
-//2 receber os dados do formulário
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = $_POST["data"];
     $cliente = $_POST["cliente"];
@@ -21,8 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quantidade = $_POST["quantidade"];
     $valor = $_POST["valor"];
    
-//3 salvar os dados no banco de dados
-
     $sql = "INSERT INTO pedidos (data, cliente, produto, quantidade, valor) VALUES (:data, :cliente, :produto, :quantidade, :valor)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':data', $data);
@@ -32,9 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':valor', $valor);
 
     if ($stmt->execute()) {
-        echo "Pedido salvo com sucesso!";
-        //redirecionar para a página de listagem de pedidos
-        header("Location:index.php");
+        header("Location: ../index.php");
+        exit();
     } else {
         echo "Erro ao salvar o pedido.";
     }
