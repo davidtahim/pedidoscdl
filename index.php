@@ -48,7 +48,35 @@
                 </thead> 
                 <tbody>
                     <?php
-                    
+                        $host = 'localhost';
+                        $user = 'root';
+                        $password = '';
+                        $database = 'pedidos';
+                        $port = 3307;
+
+                        try {
+                            $pdo = new PDO("mysql:host=$host;port=$port;dbname=$database", $user, $password);
+                        } catch(PDOException $e) {
+                            die("Erro ao conectar ao banco de dados: " . $e->getMessage());
+
+                        }
+
+                        $sql = "SELECT * FROM pedidos";
+                        $stmt = $pdo->query($sql);
+                        $stmt->execute();
+
+                        while($row=$stmt->fetch()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["data"] . "</td>";
+                            echo "<td>" . $row["cliente"] . "</td>";
+                            echo "<td>" . $row["produto"] . "</td>";
+                            echo "<td>" . $row["valor"] . "</td>";
+                            echo "<td><a href='scripts/editar.php?id=" . $row["id"] . "'>Editar</a> | <a href='scripts/excluir.php?id=" . $row["id"] . "'>Excluir</a></td>";
+                            echo "</tr>";
+
+                        }
+
+                        
                     ?>
                 </tbody>   
             </table>
