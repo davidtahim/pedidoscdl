@@ -15,4 +15,29 @@ $stmt->bindParam(':id', $id);
 $stmt->execute();
 $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if (!$pedido) {
+    header("Location: ../index.php");
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $data = $_POST["data"];
+    $cliente = $_POST["cliente"];
+    $produto = $_POST["produto"];
+    $quantidade = $_POST["quantidade"];
+    $valor = $_POST["valor"];
+
+    $sql = "UPDATE pedidos SET data = :data, cliente = :cliente, produto = :produto, quantidade = :quantidade, valor = :valor WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':data', $data);
+    $stmt->bindParam(':cliente', $cliente);
+    $stmt->bindParam(':produto', $produto);
+    $stmt->bindParam(':quantidade', $quantidade);
+    $stmt->bindParam(':valor', $valor);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+
+    header("Location: ../index.php");
+
+}
 ?>
