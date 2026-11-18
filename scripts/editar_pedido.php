@@ -52,7 +52,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h1>Editar Pedido</h1>
 
-    <form action="" method="post">
+    <form action="editar_pedido.php?id=<?php echo $id; ?>" method="post">
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" value="<?php echo $pedido['data']; ?>" required><br>
+
+        <label for="cliente">Cliente:</label>
+        <input type="text" id="cliente" name="cliente" value="<?php echo $pedido['cliente']; ?>" required><br>
+
+        <label for="produto">Produto:</label>
+        <input type="text" id="produto" name="produto" value="<?php echo $pedido['produto']; ?>" required><br>
+
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" name="quantidade" value="<?php echo $pedido['quantidade']; ?>" required><br>
+
+        <label for="valor">Valor Unitário:</label>
+        <input type="number" min="0" step="1.00" id="valor" name="valor" value="<?php echo $pedido['valor']; ?>" required><br>
+
+        <input type="submit" value="Atualizar Pedido">
 
     </form>
 </body>
