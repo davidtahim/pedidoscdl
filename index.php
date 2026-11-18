@@ -21,7 +21,7 @@
         </header>
         <main>
             <h1>Sistema de Pedidos</h1>
-            <form action="scripts/salvar_pedido.php">
+            <form action="scripts/salvar_pedido.php" method="post">
                 <label for="data">Data:</label>
                 <input type="date" id="data" name="data" required /><br />
                 <label for="cliente">Cliente:</label>
@@ -30,8 +30,8 @@
                 <input type="text" id="produto" name="produto" required /><br />
                 <label for="quantidade">Quantidade:</label>
                 <input type="number" id="quantidade" name="quantidade" required /><br />
-                <label for="valor_unitario">Valor Unitário:</label>
-                <input type="number" min="0" step="1.00" id="valor_unitario" name="valor_unitario" required /><br />
+                <label for="valor">Valor Unitário:</label>
+                <input type="number" min="0" step="1.00" id="valor" name="valor" required /><br />
                 <input type="submit" value="Salvar Pedido" />
             </form>
             <hr>
@@ -41,6 +41,7 @@
                         <th>Data</th>
                         <th>Cliente</th>
                         <th>Produto</th>
+                        <th>Quantidade</th>
                         <th>Valor</th>
                         <th>Ações</th>
                     </tr>
@@ -70,6 +71,7 @@
                             echo "<td>" . $row["data"] . "</td>";
                             echo "<td>" . $row["cliente"] . "</td>";
                             echo "<td>" . $row["produto"] . "</td>";
+                            echo "<td>" . $row["quantidade"] . "</td>";
                             echo "<td>" . $row["valor"] . "</td>";
                             echo "<td><a href='scripts/editar.php?id=" . $row["id"] . "'>Editar</a> | <a href='scripts/excluir.php?id=" . $row["id"] . "'>Excluir</a></td>";
                             echo "</tr>";
