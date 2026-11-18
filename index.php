@@ -73,7 +73,7 @@
                             echo "<td>" . $row["produto"] . "</td>";
                             echo "<td>" . $row["quantidade"] . "</td>";
                             echo "<td>" . $row["valor"] . "</td>";
-                            echo "<td><a href='scripts/editar.php?id=" . $row["id"] . "'>Editar</a> | <a href='scripts/excluir.php?id=" . $row["id"] . "'>Excluir</a></td>";
+                            echo "<td><a href='scripts/editar_pedido.php?id=" . $row["id"] . "'>Editar</a> | <a href='scripts/excluir_pedido.php?id=" . $row["id"] . "'>Excluir</a></td>";
                             echo "</tr>";
 
                         }
